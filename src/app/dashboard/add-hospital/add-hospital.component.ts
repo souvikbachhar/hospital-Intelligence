@@ -3,6 +3,7 @@ import {MatSnackBar} from '@angular/material/snack-bar';
 import {MatDialog, MatDialogRef, MAT_DIALOG_DATA} from '@angular/material/dialog';
 import { AlertDialogComponent } from 'src/app/alert-dialog/alert-dialog.component';
 import { ConfirmationDialog } from 'src/app/confirmation-dialog/confirmation-dialog.component';
+import { Router } from '@angular/router';
 
 export interface DialogData {
   animal: 'panda' | 'unicorn' | 'lion';
@@ -15,13 +16,16 @@ export interface DialogData {
 })
 export class AddHospitalComponent implements OnInit {
 
-  constructor(private snackBar: MatSnackBar,public dialog: MatDialog) { }
+  constructor(private snackBar: MatSnackBar,
+    public dialog: MatDialog,
+    private router:Router) { }
 
   ngOnInit() {
   }
 
   addHospital(){
-    console.log('added')
+    console.log('added');
+    this.router.navigateByUrl('/app/dashboard/saved');
   }
 
   states: State[] = [
