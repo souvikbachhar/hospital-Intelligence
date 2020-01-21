@@ -1,0 +1,21 @@
+<div style="width: 90%">
+<i><label>Hospital Search Results...</label></i>
+<table class="table table-hover">
+  <thead class="thead-light">
+    <tr>
+      <th scope="col">Hospital ID</th>
+      <th scope="col">Hospital Name</th>
+      <th scope="col">Available Doctors</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let hospital of hospitals;index as i">
+      <th scope="row">1</th>
+      <td>{{hospital.name}}</td>
+      <td><tr *ngFor="let doctor of hospital.availableDoctors">{{doctor.name}}-{{doctor.contact}}</tr>
+      </td>
+      
+    </tr>
+  </tbody>
+</table>
+</div>

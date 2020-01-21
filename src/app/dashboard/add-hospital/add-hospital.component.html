@@ -1,0 +1,68 @@
+<h3 style="margin-left: 250px;">Add Hospital</h3>
+<form ngNativeValidate (ngSubmit)='addHospital()'>
+    <div class="example-container">
+        <b><label style="margin-right: 50px;">Hospital Name :</label> </b>
+        <mat-form-field class = "tp-custom-width">
+          <input matInput matTextareaAutosize placeholder="Enter hospital name"
+           [(ngModel)]="hospitalName" name="hospitalName" required>
+        </mat-form-field>
+    </div>
+    <div class="example-container">
+        <b><label style="margin-right: 50px;">Enter address :</label> </b>
+            <mat-form-field class="example-full-width">
+                <textarea matInput placeholder="Enter address" required 
+                [(ngModel)]="hospitalAddress" name="hospitalAddress"></textarea>
+            </mat-form-field>
+    </div>
+    <div>
+    <b><label style="margin-right: 110px;">State :</label> </b>
+    <mat-form-field>
+        <mat-label>Select State</mat-label>
+        <mat-select >
+          <mat-option *ngFor="let state of states" [value]="state.value">
+            {{state.viewValue}}
+          </mat-option>
+        </mat-select>
+      </mat-form-field>
+      <b><label style="margin-left: 20px;margin-right: 80px;">City :</label> </b>
+      <mat-form-field>
+          <mat-label>Select City</mat-label>
+          <mat-select >
+            <mat-option *ngFor="let city of cities" [value]="city.value">
+              {{city.viewValue}}
+            </mat-option>
+          </mat-select>
+        </mat-form-field>
+    </div>
+    <div class="example-container">
+        <b><label style="margin-right: 90px;">Pincode :</label> </b>
+        <mat-form-field class = "example-full-width">
+          <input matInput matTextareaAutosize placeholder="Enter pincode"
+           [(ngModel)]="pincode" name="pincode" required>
+        </mat-form-field>
+    </div>
+    <div class="example-container">
+        <b><label style="margin-right: 110px;">Type :</label> </b>
+        <mat-radio-group aria-label="Select an option">
+            <mat-radio-button value="1" style="margin-right: 20px;">Government</mat-radio-button>
+            <mat-radio-button value="2">Private</mat-radio-button>
+          </mat-radio-group>
+    </div>
+    <div class="example-container">
+        <b><label style="margin-right: 50px;">Contact Details :</label> </b>
+        <mat-form-field class = "example-full-width">
+          <input matInput matTextareaAutosize placeholder="Enter primary contact"
+           [(ngModel)]="hospitalPrimaryContact" name="hospitalPrimaryContact" required>
+        </mat-form-field>
+        <mat-form-field class = "example-full-width" style="margin-left: 20px; width: 20%;">
+            <input matInput matTextareaAutosize placeholder="Enter emergency contact"
+             [(ngModel)]="hospitalEmergencyContact" name="hospitalEmergencyContact" required>
+          </mat-form-field>
+    </div>
+      <!--<button mat-raised-button color="primary"  [routerLink]="'/app/dashboard/home'">Back</button>-->
+      <button mat-raised-button color="primary" mat-button (click)="openSnackBar('Details not saved', 'Dismiss')"
+       [routerLink]="'/app/dashboard/home'">Back</button>
+      <button style="margin-left: 20px;" type="submit"  mat-raised-button color="primary"
+      [routerLink]="'/app/dashboard/saved'">Submit</button>
+</form>
+    

@@ -1,0 +1,20 @@
+<div >
+    <div class="example-container">
+        <b><label style="margin-right: 50px;">Search Patient :</label> </b>
+        <mat-form-field class = "tp-custom-width">
+          <input matInput matTextareaAutosize placeholder="Search by id or contact number"
+           [(ngModel)]="patientSearchQuery" name="patientSearch">
+        </mat-form-field>
+        <button style="margin-left: 20px;" mat-raised-button color="primary" (click)="searchPatient()" [routerLink]="'searchpatient'">Search</button>
+      </div>
+      <div class="example-container">
+        <b><label style="margin-right: 40px;">Search Hospital :</label> </b>
+        <mat-form-field class = "tp-custom-width">
+          <input matInput matTextareaAutosize placeholder="Search by hospital name or contact number" [(ngModel)]="hospitalSearchQuery" name="hospitalSearch">
+        </mat-form-field>
+        <button style="margin-left: 20px;" mat-raised-button color="primary" (click)="searchHospital()" [routerLink]="'searchhospital'">Search</button>
+      </div>
+</div>    
+<div>
+  <router-outlet></router-outlet>
+</div>
