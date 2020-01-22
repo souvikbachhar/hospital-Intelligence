@@ -6,6 +6,7 @@
       <th scope="col">Hospital ID</th>
       <th scope="col">Hospital Name</th>
       <th scope="col">Available Doctors</th>
+      <th scope="col">View/Edit</th>
     </tr>
   </thead>
   <tbody>
@@ -14,7 +15,8 @@
       <td>{{hospital.name}}</td>
       <td><tr *ngFor="let doctor of hospital.availableDoctors">{{doctor.name}}-{{doctor.contact}}</tr>
       </td>
-      
+      <td><button style="line-height: 30px;" mat-raised-button color="primary" 
+        (click)="searchHospitalDetails()">View/Edit</button></td>     
     </tr>
   </tbody>
 </table>

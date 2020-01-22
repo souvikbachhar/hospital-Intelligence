@@ -26,4 +26,17 @@ export class PatientPersonalDetailsComponent implements OnInit {
   updatePatient(){
     this.enableEdit();
   }
+  cities = [
+    {value: 's-0', viewValue: 'Bengaluru'},
+    {value: 's-1', viewValue: 'Bellandur'},
+    {value: 's-2', viewValue: 'BTM'}
+  ];
+  bloodGroups = [
+    {value: 'A+', viewValue: 'A+'},
+    {value: 'B+', viewValue: 'B+'},
+    {value: 'O+', viewValue: 'O+'},
+    {value: 'O-', viewValue: 'O-'}
+  ];
+  test(){
+  }
 }

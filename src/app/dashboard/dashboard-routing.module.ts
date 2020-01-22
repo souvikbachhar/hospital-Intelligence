@@ -14,7 +14,14 @@ import { PatientDetailsComponent } from './patient-details/patient-details.compo
 const routes: Routes = [
   {
     path: '', component: DashboardComponent, children: [
-      { path: 'home', loadChildren: () => import (`./home/home.module`).then(m => m.HomeModule) },
+     // { path: 'home', loadChildren: () => import (`./home/home.module`).then(m => m.HomeModule) },
+      { path: 'home',
+      children: [
+        {
+          path: '',
+          loadChildren: './home/home.module#HomeModule'
+        }
+      ]},
       { path: 'doctoravailability', component: DoctorAvailabilityComponent },
       { path: 'addpatient', component: AddPatientComponent },
       { path: 'addhospital', component: AddHospitalComponent },

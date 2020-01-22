@@ -53,4 +53,8 @@ export class SearchhospitalComponent implements OnInit {
   ngOnInit() {
   }
 
+  searchHospitalDetails(){
+    
+  }
+
 }

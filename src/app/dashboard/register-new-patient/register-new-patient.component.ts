@@ -4,6 +4,7 @@ import {FormControl} from '@angular/forms';
 import {MatSnackBar} from '@angular/material/snack-bar';
 import { Router } from '@angular/router';
 
+
 @Component({
   selector: 'app-register-new-patient',
   templateUrl: './register-new-patient.component.html',
@@ -11,19 +12,40 @@ import { Router } from '@angular/router';
 })
 export class RegisterNewPatientComponent implements OnInit {
   isLinear = false;
+  isEditable:Boolean= true;
+  date;
   firstFormGroup: FormGroup;
   secondFormGroup: FormGroup;
   thirdFormGroup:FormGroup;
-  date = new FormControl(new Date());
+  fourthFormGroup:FormGroup;
+  patientFirstName: string = "John";
+  patientLastName: string = "Doe";
+  patientContactDetails: string ='99999 99999';
+  patientGender: string = 'Male';
+  patientBloodGroup: string = 'O+ve';
+  patientAddress: string = 'Bellandur';
+  patientCity: string = 'Bengaluru';
+  patientPincode: string = '111111';
+  patientID:string='1011';
+  selectedHospital: string='Hospital1';
+  hospitalAddress: string='Banglore';
+  selectedDepartment: string='Skin';
+  selectedDoctor: string='Doctor1';
+  selectedAppointmentDate: string='22/01/2020';
+  selectedAppointmentTime: string='12:00';
+  
   bloodGroups = [
     {value: 'A+', viewValue: 'A+'},
     {value: 'B+', viewValue: 'B+'},
     {value: 'O+', viewValue: 'O+'},
     {value: 'O-', viewValue: 'O-'}
   ];
-  constructor(private _formBuilder: FormBuilder,private snackBar: MatSnackBar,private router:Router) { }
+  constructor(private _formBuilder: FormBuilder,private snackBar: MatSnackBar,private router:Router) {
+    this.date = new FormControl(new Date());
+   }
 
   ngOnInit() {
+    this.isEditable=true;
     this.firstFormGroup = this._formBuilder.group({
       firstName: ['', Validators.required],
       lastName: ['', Validators.required],
@@ -43,6 +65,9 @@ export class RegisterNewPatientComponent implements OnInit {
     });
     this.thirdFormGroup = this._formBuilder.group({
       patientProblem:['']
+    });
+    this.fourthFormGroup=this._formBuilder.group({
+
     });
     this.secondFormGroup.controls.patientDate=this.date; 
   }
@@ -87,7 +112,25 @@ export class RegisterNewPatientComponent implements OnInit {
   }
 
   submit(){
-    this.router.navigateByUrl('/app/dashboard/saved');
+    //this.router.navigateByUrl('/app/dashboard/saved');
+    // var printContents = document.getElementById('printableArea').innerHTML;
+    // var originalContents = document.body.innerHTML;
+
+    // document.body.innerHTML = printContents;
+
+    // window.print();
+
+    // document.body.innerHTML = originalContents;
+
+//    var  w=window.open();
+// w.document.write(document.getElementById('printableArea').innerHTML);
+// w.print();
+// w.close();
+  this.isEditable=false;
+  window.open('app/printPatientRegistration', "_blank");
+  }
+  rePrint(){
+    window.open('app/printPatientRegistration', "_blank");
   }
 
 }

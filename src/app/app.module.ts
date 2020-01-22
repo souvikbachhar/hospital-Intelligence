@@ -10,6 +10,7 @@ import { PageNotFoundComponent } from './page-not-found/page-not-found.component
 import { CustomMaterialModule } from './appmaterial-module';
 import { AlertDialogComponent } from './alert-dialog/alert-dialog.component';
 import { ConfirmationDialog } from './confirmation-dialog/confirmation-dialog.component';
+import { PrintPatientRegistrationComponent } from './print-patient-registration/print-patient-registration.component';
 
 @NgModule({
   declarations: [
@@ -17,7 +18,8 @@ import { ConfirmationDialog } from './confirmation-dialog/confirmation-dialog.co
     LoginComponent,
     PageNotFoundComponent,
     AlertDialogComponent,
-    ConfirmationDialog
+    ConfirmationDialog,
+    PrintPatientRegistrationComponent
   ],
   imports: [
     BrowserModule,

@@ -17,6 +17,8 @@ import { BrowserModule } from '@angular/platform-browser';
 import { PatientDetailsComponent } from './patient-details/patient-details.component';
 import { PatientPersonalDetailsComponent } from './patient-personal-details/patient-personal-details.component';
 import { PatientHospitalVisitDetailsComponent } from './patient-hospital-visit-details/patient-hospital-visit-details.component';
+import { PatientBillingDetailsComponent } from './patient-billing-details/patient-billing-details.component';
+import { NgxBarcodeModule } from 'ngx-barcode';
 
 @NgModule({
   declarations: [
@@ -29,14 +31,16 @@ import { PatientHospitalVisitDetailsComponent } from './patient-hospital-visit-d
     RegisterExistingPatientComponent,
     PatientDetailsComponent,
     PatientPersonalDetailsComponent,
-    PatientHospitalVisitDetailsComponent
+    PatientHospitalVisitDetailsComponent,
+    PatientBillingDetailsComponent
   ],
   imports: [
     CommonModule,
     DashboardRoutingModule,
     FormsModule,
     ReactiveFormsModule,
-    CustomMaterialModule
+    CustomMaterialModule,
+    NgxBarcodeModule
   ]
 })
 export class DashboardModule { }

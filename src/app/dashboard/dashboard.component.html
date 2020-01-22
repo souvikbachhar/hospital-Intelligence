@@ -1,6 +1,6 @@
 <mat-toolbar color="primary">
     <img style="height: 63px; margin-right: 40%" src="../assets/images/emergency.jpg" /> <img
-        style="height: 63px; margin-right: 37%" src="../assets/images/logo.JPG" /> <img style="height: 63px"
+        style="height: 63px; margin-right: 30%" src="../assets/images/app.JPG" /> <img style="height: 63px"
         src="../assets/images/emergency2.JPG" />
 </mat-toolbar>
 <div class="row" style="margin-left: -30px;">
@@ -14,16 +14,34 @@
                     Registration</button>
                 <button mat-raised-button color="primary" [routerLink]="'addpatient'">New Patient Registration</button>
                 <button mat-raised-button color="primary" (click)="logout()">Logout</button>
-                        
+                <svg width="100%" height="100%">
+                    <rect width="100%" height="100%" fill="#007bff" />
+                </svg>
+                <svg width="100%" height="100%">
+                    <rect width="100%" height="100%" fill="#007bff" />
+                </svg>
+                <svg width="100%" height="90">
+                        <rect width="100%" height="100" fill="#007bff" />
+                    </svg>
             </nav>
         </div>
         <mat-sidenav-container class="example-container">
             <mat-sidenav #sidenav mode="side" opened class="example-sidenav">
             </mat-sidenav>
-        </mat-sidenav-container>    
+        </mat-sidenav-container>
     </div>
     <div class="col-md-9">
         <div style="height: 10px;"></div>
         <router-outlet></router-outlet>
     </div>
 </div>
+<footer class="page-footer font-small blue">
+
+        <!-- Copyright -->
+        <div class="footer">
+          <p>© 2020 Copyright:Developers community</p>
+        </div>
+        
+        <!-- Copyright -->
+      
+      </footer>

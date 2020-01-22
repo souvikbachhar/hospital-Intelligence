@@ -11,7 +11,7 @@ import { MatSnackBar } from '@angular/material';
   styleUrls: ['./register-existing-patient.component.css']
 })
 export class RegisterExistingPatientComponent implements OnInit {
-
+  isEditable:Boolean= true;
   isLinear = false;
   firstFormGroup: FormGroup;
   secondFormGroup: FormGroup;

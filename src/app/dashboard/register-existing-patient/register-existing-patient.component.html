@@ -4,7 +4,7 @@
         (click)="openSnackBar('Details not saved', 'Dismiss')">Back</button>
 </p>
 <mat-horizontal-stepper [linear]="true" #stepper>
-    <mat-step [stepControl]="firstFormGroup">
+    <mat-step [stepControl]="firstFormGroup" [editable]="isEditable">
         <form [formGroup]="firstFormGroup">
             <ng-template matStepLabel>Patient Details</ng-template>
             <table>
@@ -87,7 +87,7 @@
             </div>
         </form>
     </mat-step>
-    <mat-step [stepControl]="secondFormGroup">
+    <mat-step [stepControl]="secondFormGroup" [editable]="isEditable">
         <form [formGroup]="secondFormGroup">
             <ng-template matStepLabel>Hospital Details</ng-template>
             <table>
@@ -158,7 +158,7 @@
             </div>
         </form>
     </mat-step>
-    <mat-step>
+    <mat-step [editable]="isEditable">
         <ng-template matStepLabel>Sickness Details</ng-template>
         <form [formGroup]="thirdFormGroup">
             <ng-template matStepLabel>Sickness Detail</ng-template>

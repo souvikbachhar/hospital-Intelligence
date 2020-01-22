@@ -3,7 +3,7 @@
         [routerLink]="'/app/dashboard/addpatient'" (click)="openSnackBar('Details not saved', 'Dismiss')">Back</button>
 </p>
 <mat-horizontal-stepper [linear]="true" #stepper>
-    <mat-step [stepControl]="firstFormGroup">
+    <mat-step [stepControl]="firstFormGroup" [editable]="isEditable">
         <form [formGroup]="firstFormGroup">
             <ng-template matStepLabel>Patient Details</ng-template>
             <table>
@@ -86,7 +86,7 @@
             </div>
         </form>
     </mat-step>
-    <mat-step [stepControl]="secondFormGroup">
+    <mat-step [stepControl]="secondFormGroup" [editable]="isEditable">
         <form [formGroup]="secondFormGroup">
             <ng-template matStepLabel>Hospital Details</ng-template>
             <table>
@@ -157,7 +157,7 @@
             </div>
         </form>
     </mat-step>
-    <mat-step>
+    <mat-step [editable]="isEditable">
         <ng-template matStepLabel>Sickness Details</ng-template>
         <form [formGroup]="thirdFormGroup">
             <ng-template matStepLabel>Sickness Detail</ng-template>
@@ -168,8 +168,75 @@
         </form>
         <div>
             <button mat-stroked-button color="warn" style="margin-right: 10px" matStepperPrevious>Back</button>
+            <button mat-stroked-button color="primary" matStepperNext>Next</button>
+        </div>
+    </mat-step>
+    <mat-step [editable]="isEditable">
+        <ng-template matStepLabel>Preview and print</ng-template>
+        <form [formGroup]="fourthFormGroup">
+            <ng-template matStepLabel>Preview and print</ng-template>
+            <div id="printableArea">
+                    <!-- <ngx-barcode style="float: right;margin-right: -50px" [bc-value]="patientID" [bc-display-value]="false">
+
+                        </ngx-barcode> -->
+            <p style="margin-left:350px"><b>{{selectedHospital}}</b>
+                </p>
+            <label ><b>ID : </b>{{patientID}}</label>
+            <label style="margin-left:300px">{{hospitalAddress}}</label>
+            <label style="margin-left:300px;"><b>#####</b>
+                <!-- <ngx-barcode [bc-value]="patientID" [bc-display-value]="false">
+
+                </ngx-barcode> -->
+            </label>
+            <table>
+                <tr>
+                        <td><b>Doctor :</b></td>
+                        <td>{{selectedDoctor}}</td>
+                        <td><b>Department :</b></td>
+                        <td>{{selectedDepartment}}</td>
+                        <td><b>Appointment Date :</b></td>
+                        <td>{{selectedAppointmentDate}}</td>
+                        <td><b>Appointment Time :</b></td>
+                        <td>{{selectedAppointmentTime}}</td>
+                </tr>
+                <tr>
+                    <td> <b><label>Name :</label> </b></td>
+                    <td>
+                        <label>{{patientFirstName}}</label>
+                    </td>
+                    <td>
+                        <label>{{patientLastName}}</label>
+                    </td>
+                    <td> <b><label>Contact Number :</label> </b></td>
+                    <td>
+                        <label>{{patientContactDetails}}</label>
+                    </td>
+                </tr>
+                <tr>
+                    <td> <b><label>Sex :</label> </b></td>
+                    <td>
+                        <label>{{patientGender}}</label>
+                    </td>
+                    <td> <b><label>Blood Group:</label> </b></td>
+                    <td>
+                        <label>{{patientBloodGroup}}</label>
+                    </td>
+                    <td> <b><label>Address :</label> </b></td>
+                    <td>
+                        <label>{{patientAddress}} , {{patientCity}} , {{patientPincode}}</label>
+                    </td>
+                </tr>
+            </table>
+            <hr>
+        </div>
+        </form>
+        <div *ngIf="isEditable">
+            <button mat-stroked-button color="warn" style="margin-right: 10px" matStepperPrevious>Back</button>
             <button mat-raised-button color="warn" style="margin-right: 10px" (click)="stepper.reset()">Reset</button>
-            <button mat-raised-button color="primary" (click)="submit()">Submit</button>
+            <button mat-raised-button color="primary" (click)="submit();">Submit & Print</button>
+        </div>
+        <div *ngIf="!isEditable">
+            <button mat-raised-button color="primary" (click)="rePrint();">Re-Print</button>
         </div>
     </mat-step>
 </mat-horizontal-stepper>

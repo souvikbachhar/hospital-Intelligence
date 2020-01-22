@@ -15,6 +15,11 @@ export interface DialogData {
   styleUrls: ['./add-hospital.component.css']
 })
 export class AddHospitalComponent implements OnInit {
+  hospitalName: string;
+  hospitalAddress: string;
+  pincode: string;
+  hospitalPrimaryContact: string;
+  hospitalEmergencyContact: string;
 
   constructor(private snackBar: MatSnackBar,
     public dialog: MatDialog,

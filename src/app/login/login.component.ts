@@ -9,22 +9,22 @@ import {ActivatedRoute, Router,ParamMap} from '@angular/router';
   styleUrls: ['./login.component.css']
 })
 export class LoginComponent implements OnInit {
-
+  public showPasswordFlag: boolean = false;
   constructor(private profileService:ProfileService,
     private activetedRoute: ActivatedRoute,
     private router: Router) { }
 
   ngOnInit() {
   }
-
-  userName='admin@healthcarerecord.com';
+  userEmail : string='';
+  userName='admin@healthcare.com';
   userPassword='admin';
-  private loginStatus: boolean = false;
+  public loginStatus: boolean = false;
 
   login(){
     console.log(this.userName);
     console.log(this.userPassword);
-    if(this.userName=='admin@healthcarerecord.com'&&this.userPassword=='admin'){
+    if(this.userName=='admin@healthcare.com'&&this.userPassword=='admin'){
       this.profileService.authenticationStatus=true;
       this.loginStatus=false;
       this.router.navigate(['dashboard/home'], {relativeTo: this.activetedRoute});
@@ -32,5 +32,9 @@ export class LoginComponent implements OnInit {
       this.loginStatus=true;
     }
     console.log(this.profileService.authenticationStatus)
+  }
+
+  showPassword(){
+    this.showPasswordFlag = !this.showPasswordFlag;
   }
 }
