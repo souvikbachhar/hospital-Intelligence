@@ -1,0 +1,14 @@
+<p><b>Patient Details</b></p>
+
+<button style="float:right;margin-right: 10px" type="submit" mat-raised-button color="primary"
+        [routerLink]="'/app/dashboard/home'" (click)="openSnackBar('Details not saved', 'Dismiss')">Back</button>
+
+<mat-tab-group>
+        <mat-tab label="Patient details">
+                <app-patient-personal-details></app-patient-personal-details>
+        </mat-tab>
+        <mat-tab label="Hospital visit details">
+                <app-patient-hospital-visit-details>
+                </app-patient-hospital-visit-details>
+        </mat-tab>
+</mat-tab-group>

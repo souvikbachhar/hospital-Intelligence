@@ -8,6 +8,7 @@ import { DoctorAvailabilityComponent } from './doctor-availability/doctor-availa
 import { DetailsSavedComponent } from './details-saved/details-saved.component';
 import { RegisterNewPatientComponent } from './register-new-patient/register-new-patient.component';
 import { RegisterExistingPatientComponent } from './register-existing-patient/register-existing-patient.component';
+import { PatientDetailsComponent } from './patient-details/patient-details.component';
 
 
 const routes: Routes = [
@@ -19,7 +20,8 @@ const routes: Routes = [
       { path: 'addhospital', component: AddHospitalComponent },
       { path: 'saved', component: DetailsSavedComponent },
       { path: 'registernewpatient', component: RegisterNewPatientComponent},
-      { path: 'registerexistingpatient', component: RegisterExistingPatientComponent}
+      { path: 'registerexistingpatient', component: RegisterExistingPatientComponent},
+      { path:'patientdetails',component:PatientDetailsComponent}
      // { path: 'search',loadChildren:() =>import (`./home/home.module`).then(m=>m.HomeModule)}
     ]
   },

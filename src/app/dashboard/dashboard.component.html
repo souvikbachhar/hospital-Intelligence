@@ -1,24 +1,29 @@
 <mat-toolbar color="primary">
-    <img style="height: 63px; margin-right: 40%"
-    src="../assets/images/emergency.jpg" /> <img
-    style="height: 63px; margin-right: 37%"
-    src="../assets/images/applogo.PNG" /> <img
-    style="height: 63px" src="../assets/images/emergency2.JPG" />
-</mat-toolbar>   
-<div class="row" style="margin-left: -40px;">
+    <img style="height: 63px; margin-right: 40%" src="../assets/images/emergency.jpg" /> <img
+        style="height: 63px; margin-right: 37%" src="../assets/images/logo.JPG" /> <img style="height: 63px"
+        src="../assets/images/emergency2.JPG" />
+</mat-toolbar>
+<div class="row" style="margin-left: -30px;">
     <div class="col-md-3">
         <div class="container">
-        <nav class="nav flex-column nav-pills">
-          <button mat-raised-button color="primary"  [routerLink]="'home'">Home</button>
-          <button mat-raised-button color="primary"  [routerLink]="'doctoravailability'">Doctor's Availability</button>
-          <button mat-raised-button color="primary"  [routerLink]="'addhospital'">New Hospital Registration</button>
-          <button mat-raised-button color="primary"  [routerLink]="'addpatient'">New Patient Registration</button>
-          <button mat-raised-button color="primary" (click)="logout()">Logout</button>
-        </nav>
+            <nav class="nav flex-column nav-pills">
+                <button mat-raised-button color="primary" [routerLink]="'home'">Home</button>
+                <button mat-raised-button color="primary" [routerLink]="'doctoravailability'">Doctor's
+                    Availability</button>
+                <button mat-raised-button color="primary" [routerLink]="'addhospital'">New Hospital
+                    Registration</button>
+                <button mat-raised-button color="primary" [routerLink]="'addpatient'">New Patient Registration</button>
+                <button mat-raised-button color="primary" (click)="logout()">Logout</button>
+                        
+            </nav>
         </div>
+        <mat-sidenav-container class="example-container">
+            <mat-sidenav #sidenav mode="side" opened class="example-sidenav">
+            </mat-sidenav>
+        </mat-sidenav-container>    
     </div>
     <div class="col-md-9">
-        
+        <div style="height: 10px;"></div>
         <router-outlet></router-outlet>
     </div>
 </div>

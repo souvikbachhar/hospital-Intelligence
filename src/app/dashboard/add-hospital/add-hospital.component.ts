@@ -40,6 +40,7 @@ export class AddHospitalComponent implements OnInit {
     {value: 's-2', viewValue: 'BTM'}
   ];
 
+
   openSnackBar(message: string, action: string) {
     this.snackBar.open(message, action, {
       duration: 2000,

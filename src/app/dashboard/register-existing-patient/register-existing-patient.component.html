@@ -1,1 +1,211 @@
-<p>register-existing-patient works!</p>
+<p style="margin-left: 200px;"><b>Register Existing Patient</b>
+    <button style="float:right;margin-right: 20px;" type="submit" mat-raised-button color="primary"
+        [routerLink]="'/app/dashboard/addpatient'"
+        (click)="openSnackBar('Details not saved', 'Dismiss')">Back</button>
+</p>
+<mat-horizontal-stepper [linear]="true" #stepper>
+    <mat-step [stepControl]="firstFormGroup">
+        <form [formGroup]="firstFormGroup">
+            <ng-template matStepLabel>Patient Details</ng-template>
+            <table>
+                <tr>
+                    <td> <b><label>Name :</label> </b></td>
+                    <td>
+                        <mat-form-field>
+                            <input matInput placeholder="First name" formControlName="firstName" required>
+                        </mat-form-field>
+                    </td>
+                    <td>
+                        <mat-form-field>
+                            <input matInput placeholder="Last name" formControlName="lastName" required
+                                (click)="test()">
+                        </mat-form-field>
+                    </td>
+                </tr>
+                <tr>
+                    <td> <b><label>Contact Number :</label> </b></td>
+                    <td>
+                        <mat-form-field>
+                            <input type="number" matInput placeholder="Contact Number" formControlName="patientContact"
+                                required>
+                                <mat-icon matSuffix>phone</mat-icon>
+                        </mat-form-field>
+                    </td>
+                </tr>
+                <tr>
+                    <td> <b><label>Sex :</label> </b></td>
+                    <td>
+                        <mat-radio-group aria-label="Select an option" formControlName="patientGender">
+                            <mat-radio-button value="M" style="margin-right: 20px;">Male</mat-radio-button>
+                            <mat-radio-button value="F" style="margin-right: 20px;">Female</mat-radio-button>
+                            <mat-radio-button value="O" style="margin-right: 20px;">Others</mat-radio-button>
+                        </mat-radio-group>
+                    </td>
+                    <td> <b><label>Blood Group:</label> </b></td>
+                    <td>
+                        <mat-form-field>
+                            <mat-label>Select Blood Group</mat-label>
+                            <mat-select formControlName="patientBloodGroup">
+                                <mat-option *ngFor="let bloodGroup of bloodGroups" [value]="bloodGroup.value">
+                                    {{bloodGroup.viewValue}}
+                                </mat-option>
+                            </mat-select>
+                        </mat-form-field>
+                    </td>
+                </tr>
+                <tr>
+                    <td> <b><label>Address :</label> </b></td>
+                    <td>
+                        <mat-form-field style="width:120%">
+                            <textarea rows="3" matInput placeholder="Enter address" formControlName="patientAddress"
+                                name="patientAddress"></textarea>
+                        </mat-form-field>
+                    </td>
+                </tr>
+                <tr>
+                    <td> <b><label>City :</label> </b></td>
+                    <td>
+                        <mat-form-field>
+                            <mat-label>Select City</mat-label>
+                            <mat-select formControlName="patientCity">
+                                <mat-option *ngFor="let city of cities" [value]="city.value">
+                                    {{city.viewValue}}
+                                </mat-option>
+                            </mat-select>
+                        </mat-form-field>
+                    </td>
+                    <td> <b><label>Pincode :</label> </b></td>
+                    <td>
+                        <mat-form-field>
+                            <input type="number" matInput placeholder="Pincode" formControlName="patientPincode">
+                        </mat-form-field>
+                    </td>
+                </tr>
+            </table>
+            <div>
+                <button mat-stroked-button color="primary" matStepperNext>Next</button>
+            </div>
+        </form>
+    </mat-step>
+    <mat-step [stepControl]="secondFormGroup">
+        <form [formGroup]="secondFormGroup">
+            <ng-template matStepLabel>Hospital Details</ng-template>
+            <table>
+                <tr>
+                    <td> <b><label>Hospital :</label> </b></td>
+                    <td>
+                        <mat-form-field style="width: 100%">
+                            <mat-label>Select Hospital</mat-label>
+                            <mat-select formControlName="patientHospital">
+                                <mat-option *ngFor="let hospital of hospitals" [value]="hospital.value">
+                                    {{hospital.viewValue}}
+                                </mat-option>
+                            </mat-select>
+                        </mat-form-field>
+                    </td>
+                </tr>
+                <tr>
+                    <td> <b><label>Department :</label> </b></td>
+                    <td>
+                        <mat-form-field>
+                            <mat-label>Select Department</mat-label>
+                            <mat-select formControlName="patientDepartment">
+                                <mat-option *ngFor="let department of departments" [value]="department.value">
+                                    {{department.viewValue}}
+                                </mat-option>
+                            </mat-select>
+                        </mat-form-field>
+                    </td>
+                </tr>
+                <tr>
+                    <td> <b><label>Appointment Date :</label> </b></td>
+                    <td>
+                        <mat-form-field>
+                            <input matInput [matDatepicker]="picker1" placeholder="Pick Date"
+                                formControlName="patientDate">
+                            <mat-datepicker-toggle matSuffix [for]="picker1"></mat-datepicker-toggle>
+                            <mat-datepicker #picker1></mat-datepicker>
+                        </mat-form-field>
+                    </td>
+                    <td> <b><label>Time :</label> </b></td>
+                    <td>
+                        <mat-form-field>
+                            <mat-select formControlName="patientTime">
+                                <mat-option *ngFor="let time of timelines" [value]="time.value">
+                                    {{time.viewValue}}
+                                </mat-option>
+                            </mat-select>
+                        </mat-form-field>
+                    </td>
+                </tr>
+                <tr>
+                    <td> <b><label>Doctor Available :</label> </b></td>
+                    <td>
+                        <mat-form-field>
+                            <mat-label>Select Doctor</mat-label>
+                            <mat-select formControlName="patientDoctor">
+                                <mat-option *ngFor="let doctor of doctors" [value]="doctor.value">
+                                    {{doctor.viewValue}}
+                                </mat-option>
+                            </mat-select>
+                        </mat-form-field>
+                    </td>
+                </tr>
+            </table>
+            <div>
+                <button mat-stroked-button color="warn" matStepperPrevious style="margin-right: 10px">Back</button>
+                <button mat-stroked-button color="primary" matStepperNext>Next</button>
+            </div>
+        </form>
+    </mat-step>
+    <mat-step>
+        <ng-template matStepLabel>Sickness Details</ng-template>
+        <form [formGroup]="thirdFormGroup">
+            <ng-template matStepLabel>Sickness Detail</ng-template>
+            <table>
+                <tr>
+                    <td> <b><label>Describe patient issue :</label> </b></td>
+                    <td>
+                        <mat-form-field style="width:150%">
+                            <textarea rows="4" matInput placeholder="Describe Problem briefly"
+                                formControlName="patientProblem"></textarea>
+                        </mat-form-field>
+                    </td>
+                </tr>
+                <tr>
+                    <td> <b><label>Registration Fees :</label> </b></td>
+                    <td>
+                        <b><label style="margin-right: 10px">&#8377;</label> </b>
+                        <mat-form-field>
+                            <input type="number" matInput placeholder="Registration Fees"
+                                formControlName="patientRegistrationFees">
+                        </mat-form-field>
+                    </td>
+                </tr>
+                <tr>
+                    <td> <b><label>Total Amount :</label> </b></td>
+                    <td>
+                        <b><label style="margin-right: 10px">&#8377;</label> </b>
+                        <mat-form-field>
+                            <input type="number" matInput placeholder="Total Amount" formControlName="patientTotalFees">
+                        </mat-form-field>
+                    </td>
+                </tr>
+                <tr>
+                        <td> <b><label>Upload Recipt:</label> </b></td>
+                        <td>
+                            
+                                <input type="file"  placeholder="Total Amount" formControlName="patientRecipt">
+                           
+                        </td>
+                </tr>
+            </table>
+        </form>
+        <br>
+        <div>
+            <button mat-stroked-button color="warn" style="margin-right: 10px" matStepperPrevious>Back</button>
+            <button mat-raised-button color="warn" style="margin-right: 10px" (click)="stepper.reset()">Reset</button>
+            <button mat-raised-button color="primary" (click)="submit()">Submit</button>
+        </div>
+    </mat-step>
+</mat-horizontal-stepper>

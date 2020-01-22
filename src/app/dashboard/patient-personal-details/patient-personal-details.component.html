@@ -1,0 +1,130 @@
+<table *ngIf="!editView">
+    <tr>
+        <td> <b><label>Name :</label> </b></td>
+        <td>
+            <label>{{patientFirstName}}</label>
+        </td>
+        <td>
+            <label>{{patientLastName}}</label>
+        </td>
+    </tr>
+    <tr>
+        <td> <b><label>Contact Number :</label> </b></td>
+        <td>
+            <label>{{patientContactDetails}}</label>
+        </td>
+    </tr>
+    <tr>
+        <td> <b><label>Sex :</label> </b></td>
+        <td>
+            <label>{{patientGender}}</label>
+        </td>
+        <td> <b><label>Blood Group:</label> </b></td>
+        <td>
+            <label>{{patientBloodGroup}}</label>
+        </td>
+    </tr>
+    <tr>
+        <td> <b><label>Address :</label> </b></td>
+        <td>
+            <label>{{patientAddress}}</label>
+        </td>
+    </tr>
+    <tr>
+        <td> <b><label>City :</label> </b></td>
+        <td>
+            {{patientCity}}
+        </td>
+        <td> <b><label>Pincode :</label> </b></td>
+        <td>
+            {{patientPincode}}
+        </td>
+    </tr>
+    <tr>
+        <td>
+            <button mat-stroked-button color="primary" (click)="enableEdit()">Edit</button>
+        </td>
+    </tr>
+</table>
+<table *ngIf="editView">
+    <tr>
+        <td> <b><label>Name :</label> </b></td>
+        <td>
+            <mat-form-field>
+                <input matInput placeholder="First name" [(ngModel)]="patientFirstName" required>
+            </mat-form-field>
+        </td>
+        <td>
+            <mat-form-field>
+                <input matInput placeholder="Last name" [(ngModel)]="patientLastName" required
+                    (click)="test()">
+            </mat-form-field>
+        </td>
+    </tr>
+    <tr>
+        <td> <b><label>Contact Number :</label> </b></td>
+        <td>
+            <mat-form-field>
+                <input type="number" matInput placeholder="Contact Number" 
+                    required>
+            </mat-form-field>
+        </td>
+    </tr>
+    <tr>
+        <td> <b><label>Sex :</label> </b></td>
+        <td>
+            <mat-radio-group aria-label="Select an option">
+                <mat-radio-button value="M" style="margin-right: 20px;">Male</mat-radio-button>
+                <mat-radio-button value="F" style="margin-right: 20px;">Female</mat-radio-button>
+                <mat-radio-button value="O" style="margin-right: 20px;">Others</mat-radio-button>
+            </mat-radio-group>
+        </td>
+        <td> <b><label>Blood Group:</label> </b></td>
+        <td>
+            <mat-form-field>
+                <mat-label>Select Blood Group</mat-label>
+                <mat-select >
+                    <mat-option *ngFor="let bloodGroup of bloodGroups" [value]="bloodGroup.value">
+                        {{bloodGroup.viewValue}}
+                    </mat-option>
+                </mat-select>
+            </mat-form-field>
+        </td>
+    </tr>
+    <tr>
+        <td> <b><label>Address :</label> </b></td>
+        <td>
+            <mat-form-field style="width:120%">
+                <textarea rows="4" matInput placeholder="Enter address" 
+                    name="patientAddress"></textarea>
+            </mat-form-field>
+        </td>
+    </tr>
+    <tr>
+        <td> <b><label>City :</label> </b></td>
+        <td>
+            <mat-form-field>
+                <mat-label>Select City</mat-label>
+                <mat-select>
+                    <mat-option *ngFor="let city of cities" [value]="city.value">
+                        {{city.viewValue}}
+                    </mat-option>
+                </mat-select>
+            </mat-form-field>
+        </td>
+        <td> <b><label>Pincode :</label> </b></td>
+        <td>
+            <mat-form-field>
+                <input type="number" matInput placeholder="Pincode" >
+            </mat-form-field>
+        </td>
+    </tr>
+    <tr>
+        <td>
+            <button mat-stroked-button color="warn" (click)="enableEdit()">Cancel</button>
+        </td>
+        <td>
+            <button mat-stroked-button color="primary" (click)="updatePatient()">Update</button>
+        </td>
+    </tr>
+</table>

@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-searchpatient',
@@ -7,7 +8,7 @@ import { Component, OnInit } from '@angular/core';
 })
 export class SearchpatientComponent implements OnInit {
 
-  constructor() { }
+  constructor(private _router:Router) { }
   patients = [
     {
       name: 'Arkansas',
@@ -29,4 +30,8 @@ export class SearchpatientComponent implements OnInit {
   ngOnInit() {
   }
 
+  searchPatientDetails(){
+    console.log('clicked');
+    this._router.navigateByUrl('/app/dashboard/patientdetails');
+  }
 }

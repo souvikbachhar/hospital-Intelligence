@@ -9,8 +9,13 @@ import {MatSelectModule} from '@angular/material/select';
 import {MatRadioModule} from '@angular/material/radio';
 import {MatDialogModule} from "@angular/material";
 import {MatDividerModule} from '@angular/material/divider';
- import {
-  MatButtonModule,MatSnackBarModule, MatNativeDateModule, MatIconModule, MatSidenavModule, MatListModule, MatToolbarModule} from '@angular/material';
+import {MatStepperModule} from '@angular/material/stepper';
+import {MatDatepickerModule} from '@angular/material/datepicker';
+import {MatSlideToggleModule} from '@angular/material/slide-toggle';
+import {MatTabsModule} from '@angular/material/tabs';
+import {MatGridListModule} from '@angular/material/grid-list';
+import {MatButtonModule, MatSnackBarModule, MatNativeDateModule,
+MatIconModule, MatSidenavModule, MatListModule, MatToolbarModule} from '@angular/material';
   const MaterialComponents = [
     CommonModule,
     MatButtonModule,
@@ -28,7 +33,12 @@ import {MatDividerModule} from '@angular/material/divider';
     MatRadioModule,
     MatSnackBarModule,
     MatDialogModule,
-    MatDividerModule
+    MatDividerModule,
+    MatStepperModule,
+    MatDatepickerModule,
+    MatSlideToggleModule,
+    MatTabsModule,
+    MatGridListModule
   ];
 @NgModule({
   imports: [MaterialComponents],
