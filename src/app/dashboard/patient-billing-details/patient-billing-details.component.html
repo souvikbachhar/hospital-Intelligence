@@ -1,1 +1,191 @@
-<p>Billing Details comes here</p>
+<b>Billing Details:</b>
+<div class="overflow-auto" style="height:400px">
+  <mat-accordion>
+    <mat-expansion-panel *ngFor="let visit of visits;index as i">
+      <mat-expansion-panel-header>
+        <mat-panel-title>
+          <b>Visit ID :</b> {{visit.visitID}}
+        </mat-panel-title>
+        <mat-panel-description>
+          Date: {{visit.date}}
+        </mat-panel-description>
+      </mat-expansion-panel-header>
+      <button type="button"
+        style="float: right;margin-bottom: 10px;border-radius: 12px;margin-top: -25px;margin-right: 20px"
+        mat-flat-button color="warn" data-toggle="modal" data-target="#billingModal">Add new Bill</button>
+      <table class="table table-hover">
+        <thead class="thead-light">
+          <tr>
+            <th scope="col">Transaction ID</th>
+            <th scope="col">Date</th>
+            <th scope="col">Amount</th>
+            <th scope="col">Payment Status</th>
+            <th scope="col">Edit/Delete</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let billingDetail of visit.bills;index as j">
+            <th scope="row">{{billingDetail.transactionId}}</th>
+            <td>{{billingDetail.date}}</td>
+            <td>
+              <b>&#8377;</b><label 
+              *ngIf="(selectedVisitId=='-1')||(i!=selectedVisitId)||(j!=selectedBillId)">
+                {{billingDetail.amount}}</label>
+              <!-- <input style="width: 50%" *ngIf="editClicked&&(i==selectedVisitId)&&(j==selectedBillId)"
+                [(ngModel)]="billingDetail.amount"> -->
+                <label *ngIf="editClicked&&(i==selectedVisitId)&&(j==selectedBillId)">
+                <tr *ngFor="let charge of billingDetail.amountBreakup" >
+                  <td>{{charge.chargeType}}</td>
+                  <input style="width: 50%" [(ngModel)]="charge.chargedAmount">
+                  
+                </tr>
+                </label>
+            </td>
+            <td><b *ngIf="(selectedVisitId=='-1')||(i!=selectedVisitId)||(j!=selectedBillId)" [ngClass]="{
+                'positive' : billingDetail.paymentStatus == 'Paid',
+                'negative' : billingDetail.paymentStatus =='Unpaid'
+                         }">{{billingDetail.paymentStatus}}</b>
+              <select *ngIf="editClicked&&(i==selectedVisitId)&&(j==selectedBillId)"
+                [(ngModel)]=billingDetail.paymentStatus>
+                <option value='Paid'>Paid</option>
+                <option value='Unpaid'>Unpaid</option>
+              </select>
+            <td>
+              <button type="button" style="margin-right: 10px;line-height: 25px;" mat-flat-button color="primary"
+                *ngIf="!editClicked" (click)="editToggle(i,j,billingDetail.transactionId)">Edit</button>
+              <button type="button" style="line-height: 25px;" mat-flat-button color="warn"
+                *ngIf="!editClicked">Delete</button>
+              <button type="button" style="margin-right: 10px;line-height: 25px;" mat-flat-button color="primary"
+                *ngIf="editClicked&&(i==selectedVisitId)&&(j==selectedBillId)"
+                (click)="saveBillDetails(i,j,billingDetail.transactionId)">
+                Save</button>
+              <button type="button" style="margin-right: 10px;line-height: 25px;" mat-flat-button color="warn"
+                *ngIf="editClicked&&(i==selectedVisitId)&&(j==selectedBillId)" (click)="cancel()">Cancel</button>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </mat-expansion-panel>
+  </mat-accordion>
+
+</div>
+<div class="modal fade " id="billingModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel"
+  data-backdrop="false" style="background-color: rgba(0, 0, 0, 0.5);">
+  <div class="modal-dialog  modal-lg" role="document">
+    <div class="modal-content">
+      <!--<div class="modal-header">
+              <button type="button" class="close" data-dismiss="modal"
+                  aria-label="Close">
+                  <span aria-hidden="true">&times;</span>
+              </button>
+              <h4 class="modal-title" id="myModalLabel">Modal title</h4>
+          </div>-->
+      <div class="modal-body">
+        <b>Enter Billing Details</b>
+        <hr>
+        <table>
+          <tr>
+            <td> <b><label>Name :</label> </b></td>
+            <td>
+              <label>{{patientFirstName}}</label>
+            </td>
+            <td>
+              <label>{{patientLastName}}</label>
+            </td>
+            <td><b>Patient ID :</b></td>
+            <td>{{patientID}}</td>
+            <td><b>Date :</b></td>
+            <td>{{dateNow}}</td>
+          </tr>
+          <tr>
+            <td> <b><label>Contact Number :</label> </b></td>
+            <td>
+              <label>{{patientContactDetails}}</label>
+            </td>
+            <td> <b><label>Hospital :</label> </b></td>
+            <td>
+              <label>{{hospitalName}}</label>
+            </td>
+          </tr>
+        </table>
+        <div class="separator"><b>Charges</b></div>
+        <table>
+          <tr>
+            <td>Hospital Charges : <b>&#8377;</b></td>
+            <td>
+              <mat-form-field>
+                <input type="number" matInput placeholder="Charges for Hospital" [(ngModel)]="hospitalCharge" required>
+              </mat-form-field>
+            </td>
+            <td>Doctor fees : <b>&#8377;</b></td>
+            <td>
+              <mat-form-field>
+                <input type="number" matInput placeholder="Doctor fees" [(ngModel)]="doctorFees" required>
+              </mat-form-field>
+            </td>
+          </tr>
+          <tr>
+
+            <td>Medicine charges : <b>&#8377;</b></td>
+            <td>
+              <mat-form-field>
+                <input type="number" matInput placeholder="Charges for medicine" [(ngModel)]="medicineCharges" required>
+              </mat-form-field>
+            </td>
+            <td>Miscellaneous Charge : <b>&#8377;</b></td>
+            <td>
+              <mat-form-field>
+                <input type="number" matInput placeholder="Other Miscellaneous charges"
+                  [(ngModel)]="miscellaneousCharge" required>
+              </mat-form-field>
+            </td>
+          </tr>
+          <tr>
+            <mat-slide-toggle color="warn" [(ngModel)]="patientIndoorFlag"
+            (click)="indoorFlagChange()">Indoor Patient</mat-slide-toggle>
+          </tr>
+          <tr *ngIf="patientIndoorFlag">
+            <td> <label>Admission Date :</label> </td>
+            <td>
+                <mat-form-field>
+                    <input matInput [matDatepicker]="picker1" placeholder="Pick Date"
+                        [(ngModel)]="patientAdmissionDate">
+                    <mat-datepicker-toggle matSuffix [for]="picker1"></mat-datepicker-toggle>
+                    <mat-datepicker #picker1></mat-datepicker>
+                </mat-form-field>
+            </td>
+            <td> <label>Discharge Date :</label> </td>
+            <td>
+                <mat-form-field>
+                    <input matInput [matDatepicker]="picker2" placeholder="Pick Date"
+                    [(ngModel)]="patientDischargeDate">
+                    <mat-datepicker-toggle matSuffix [for]="picker2"></mat-datepicker-toggle>
+                    <mat-datepicker #picker2></mat-datepicker>
+                </mat-form-field>
+            </td>
+            </tr>
+            <tr *ngIf="patientIndoorFlag">
+            <td >Admission charges : <b>&#8377;</b></td>
+            <td>
+              <mat-form-field>
+                <input type="number" matInput placeholder="Charges for admission" [(ngModel)]="admissionCharges"
+                  required>
+              </mat-form-field>
+            </td>
+          </tr>
+          <tr>
+            <td><b>Total</b></td>
+            <td>
+              <label>
+                {{medicineCharges+admissionCharges+doctorFees+hospitalCharge+miscellaneousCharge}}
+              </label>
+            </td>
+          </tr>
+        </table>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+        <button type="button" class="btn btn-primary">Submit</button>
+      </div>
+    </div>
+  </div>

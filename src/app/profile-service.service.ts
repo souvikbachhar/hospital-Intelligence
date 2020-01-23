@@ -6,5 +6,6 @@ import { Injectable } from '@angular/core';
 export class ProfileService {
   loggedInUser;
   authenticationStatus:boolean=true;
+  pristineBills;
   constructor() { }
 }

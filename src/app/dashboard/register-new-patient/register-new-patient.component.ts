@@ -33,6 +33,7 @@ export class RegisterNewPatientComponent implements OnInit {
   selectedDoctor: string='Doctor1';
   selectedAppointmentDate: string='22/01/2020';
   selectedAppointmentTime: string='12:00';
+  registrationFees: string="450";
   
   bloodGroups = [
     {value: 'A+', viewValue: 'A+'},

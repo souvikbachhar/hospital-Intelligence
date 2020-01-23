@@ -17,6 +17,7 @@ import {MatGridListModule} from '@angular/material/grid-list';
 import {MatTooltipModule} from '@angular/material/tooltip';
 import {MatButtonModule, MatSnackBarModule, MatNativeDateModule,
 MatIconModule, MatSidenavModule, MatListModule, MatToolbarModule} from '@angular/material';
+import {MatExpansionModule} from '@angular/material/expansion';
   const MaterialComponents = [
     CommonModule,
     MatButtonModule,
@@ -40,7 +41,8 @@ MatIconModule, MatSidenavModule, MatListModule, MatToolbarModule} from '@angular
     MatSlideToggleModule,
     MatTabsModule,
     MatGridListModule,
-    MatTooltipModule
+    MatTooltipModule,
+    MatExpansionModule
   ];
 @NgModule({
   imports: [MaterialComponents],

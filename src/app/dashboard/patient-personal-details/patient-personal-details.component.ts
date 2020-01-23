@@ -15,6 +15,8 @@ export class PatientPersonalDetailsComponent implements OnInit {
   patientAddress: string = 'Bellandur';
   patientCity: string = 'Bengaluru';
   patientPincode: string = '111111';
+  patientRegistrationDate:string ='23/01/2020';
+  patientID: string='1101';
   constructor() { }
 
   ngOnInit() {

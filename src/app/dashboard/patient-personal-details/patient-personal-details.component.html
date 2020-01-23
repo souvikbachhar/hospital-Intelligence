@@ -7,6 +7,14 @@
         <td>
             <label>{{patientLastName}}</label>
         </td>
+        <td>
+            <b><label>Registration Date :</label> </b>
+            <label>{{patientRegistrationDate}}</label>
+        </td>
+        <td>
+            <b><label>Patient ID :</label> </b>
+            <label>{{patientID}}</label>
+        </td>
     </tr>
     <tr>
         <td> <b><label>Contact Number :</label> </b></td>
@@ -38,6 +46,10 @@
         <td> <b><label>Pincode :</label> </b></td>
         <td>
             {{patientPincode}}
+        </td>
+        <td></td>
+        <td>
+            <button mat-flat-button color="warn">Register Today's visit</button>
         </td>
     </tr>
     <tr>

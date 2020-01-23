@@ -6,7 +6,7 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./print-patient-registration.component.css']
 })
 export class PrintPatientRegistrationComponent implements OnInit {
-  
+  registrationFees: string="450";
   patientFirstName: string = "John";
   patientLastName: string = "Doe";
   patientContactDetails: string ='99999 99999';
