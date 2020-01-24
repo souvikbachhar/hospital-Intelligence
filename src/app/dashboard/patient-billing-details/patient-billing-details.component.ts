@@ -6,7 +6,7 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./patient-billing-details.component.css']
 })
 export class PatientBillingDetailsComponent implements OnInit {
-
+  patientPaymentStatus='Paid';
   pristineVisits;
   changedPaymentStatus;
   editClicked:Boolean= false;

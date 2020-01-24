@@ -21,6 +21,7 @@
             <th scope="col">Amount</th>
             <th scope="col">Payment Status</th>
             <th scope="col">Edit/Delete</th>
+            <th scope="col" *ngIf="!editClicked" >Print</th>
           </tr>
         </thead>
         <tbody>
@@ -39,6 +40,7 @@
                   <input style="width: 50%" [(ngModel)]="charge.chargedAmount">
                   
                 </tr>
+                <tr></tr>
                 </label>
             </td>
             <td><b *ngIf="(selectedVisitId=='-1')||(i!=selectedVisitId)||(j!=selectedBillId)" [ngClass]="{
@@ -62,6 +64,12 @@
               <button type="button" style="margin-right: 10px;line-height: 25px;" mat-flat-button color="warn"
                 *ngIf="editClicked&&(i==selectedVisitId)&&(j==selectedBillId)" (click)="cancel()">Cancel</button>
             </td>
+            <td *ngIf="!editClicked" >
+              <button type="button" mat-flat-button
+               style="background-color: black;color: white;line-height: 25px;">
+                Print Bill
+              </button>
+            </td>
           </tr>
         </tbody>
       </table>
@@ -69,6 +77,8 @@
   </mat-accordion>
 
 </div>
+
+<!-- Billing Form Starts Here-->
 <div class="modal fade " id="billingModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel"
   data-backdrop="false" style="background-color: rgba(0, 0, 0, 0.5);">
   <div class="modal-dialog  modal-lg" role="document">
@@ -132,7 +142,7 @@
                 <input type="number" matInput placeholder="Charges for medicine" [(ngModel)]="medicineCharges" required>
               </mat-form-field>
             </td>
-            <td>Miscellaneous Charge : <b>&#8377;</b></td>
+            <td>Miscellaneous Charges : <b>&#8377;</b></td>
             <td>
               <mat-form-field>
                 <input type="number" matInput placeholder="Other Miscellaneous charges"
@@ -180,6 +190,14 @@
                 {{medicineCharges+admissionCharges+doctorFees+hospitalCharge+miscellaneousCharge}}
               </label>
             </td>
+            <td><b>Payment Status</b></td>
+            <td>
+              <select 
+              [(ngModel)]=patientPaymentStatus>
+              <option value='Paid'>Paid</option>
+              <option value='Unpaid'>Unpaid</option>
+            </select>
+            </td>
           </tr>
         </table>
       </div>
@@ -189,3 +207,4 @@
       </div>
     </div>
   </div>
+  <!-- Billing Form Ends Here-->
